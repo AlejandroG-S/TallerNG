@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<button (click)="agregarFactura()">Crear Factura</button>
+<hr>
+<p *ngIf="NoHay">No hay facturas</p>
+
+<div *ngFor="let factura of facturas; let i = index">
+    <div>
+        <b>Fecha: {{factura.fecha | date:"short"}}</b>
+        <br>
+        <b>ID Factura: {{factura.id_factura}}</b>
+        <br><br>
+        <button (click)="agregarItem()">Agregar Item</button>
+    </div>
+
+    <div *ngFor="let item of factura.items">
+        <br>
+        <b>Producto: {{item.nombre_item}}</b>
+        <p>Precio: {{item.precio}}</p>
+    </div>
+
+
+    <div *ngIf="SiItem">
+        <p>Producto: <input type="text" [(ngModel)]="nombre_item"></p>
+        <p>Precio: <input type="text" [(ngModel)]="precio"></p>
+        <button (click)="guardarItem(i)">Guardar Item</button>
+    </div>
+    <hr>
+</div>
